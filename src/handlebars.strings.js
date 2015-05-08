@@ -23,6 +23,9 @@ function(Handlebars){
         }
     };
 
+    Handlebars.registerHelper('capitalize', strings.capitalize);
+    Handlebars.registerHelper('capitalize-all', strings.capitalize_all);
+
 
 
     return strings;
