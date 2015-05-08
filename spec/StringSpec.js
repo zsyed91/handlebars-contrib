@@ -31,9 +31,19 @@ function(Strings){
                  
             });
 
+            it("should normalize each word in strict mode", function(){
+                expect(Strings.capitalize_all("mULtIPLE WordS   123", true)).toEqual("Multiple Words 123");
+            });
+
         });
 
 
+        describe("#normalize_spaces", function(){
+            it("should convert multiple spaces to a single space", function(){
+                expect(Strings.normalize_spaces("This is   a sentence,    with words.")).toEqual("This is a sentence, with words.");
+                expect(Strings.normalize_spaces("1    2   test 3")).toEqual("1 2 test 3");
+            });
+        });
 
     });
 
