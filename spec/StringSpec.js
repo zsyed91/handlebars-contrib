@@ -39,10 +39,26 @@ function(Strings){
 
 
         describe("#normalize_spaces", function(){
+            
             it("should convert multiple spaces to a single space", function(){
                 expect(Strings.normalize_spaces("This is   a sentence,    with words.")).toEqual("This is a sentence, with words.");
                 expect(Strings.normalize_spaces("1    2   test 3")).toEqual("1 2 test 3");
             });
+        });
+
+        describe("#to_url_slug", function(){
+
+            it("should convert string to url slug", function(){
+                expect(Strings.to_url_slug("An interesting blog title")).toEqual("an-interesting-blog-title");
+            });
+
+            it("should convert string to url slug and remove any restricted characters", function(){
+                expect(Strings.to_url_slug("An interesting blog's title!!")).toEqual("an-interesting-blogs-title");
+                expect(Strings.to_url_slug("An interesting blog, whoa?")).toEqual("an-interesting-blog-whoa");
+                expect(Strings.to_url_slug("2015/05/08, test topic")).toEqual("2015-05-08-test-topic");
+            });
+
+
         });
 
     });

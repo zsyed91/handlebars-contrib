@@ -28,7 +28,11 @@ function(Handlebars){
             return words.split(/\s+/).join(' ');
         },
 
-
+        to_url_slug: function(url){
+            return url.replace(/[^a-zA-Z0-9 \/]+/g, '')
+                     .replace(/[ \/]+/g, '-')
+                     .toLowerCase();
+        }
 
 
     };
@@ -36,7 +40,7 @@ function(Handlebars){
     Handlebars.registerHelper('capitalize', strings.capitalize);
     Handlebars.registerHelper('capitalize-all', strings.capitalize_all);
     Handlebars.registerHelper('normalize-spaces', strings.normalize_spaces);
-
+    Handlebars.registerHelper('to-url-slug', strings.to_url_slug);
 
 
     return strings;
