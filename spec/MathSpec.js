@@ -1,5 +1,5 @@
-define(["handlebars.math"],
-function(MathHelpers){
+define(["handlebars", "handlebars.math"],
+function(Handlebars, MathHelpers){
 
    describe("Math helpers", function(){
 
@@ -47,6 +47,184 @@ function(MathHelpers){
             it("should return undefined on invalid operator", function(){
                 expect(MathHelpers.calculate(100, '?', '3')).not.toBeDefined();
             });
+
+        });
+
+
+        describe("#compare", function(){
+
+            var data, html;
+
+
+            beforeEach(function(){
+                this.data = {
+                    x: null,
+                    y: null,
+                    operator: null
+                };
+
+                this.html = "{{#compare x operator y}}true{{else}}false{{/compare}}";
+            });
+
+            it("should determine x < y", function(){
+                
+                var template = Handlebars.compile(this.html);
+
+                this.data.operator = '<';
+
+                this.data.x = 1;
+                this.data.y = 3;
+                expect(template(this.data)).toEqual("true");
+
+                this.data.x = 2;
+                this.data.y = 1;
+                expect(template(this.data)).toEqual("false");
+
+                this.data.x = 5;
+                this.data.y = 5;
+
+                expect(template(this.data)).toEqual("false");
+            });
+
+            it("should determine x > y", function(){
+
+                var template = Handlebars.compile(this.html);
+
+                this.data.operator = '>';
+
+                this.data.x = 10;
+                this.data.y = 5;
+                expect(template(this.data)).toEqual("true");
+
+                this.data.x = 0;
+                this.data.y = 100;
+                expect(template(this.data)).toEqual("false");
+
+                this.data.x = -5;
+                this.data.y = -5;
+                expect(template(this.data)).toEqual("false");
+            });
+
+            it("should determine x <= y", function(){
+                var template = Handlebars.compile(this.html);
+
+                this.data.operator = '<=';
+
+                this.data.x = 1;
+                this.data.y = 3;
+                expect(template(this.data)).toEqual("true");
+
+                this.data.x = 2;
+                this.data.y = -1;
+                expect(template(this.data)).toEqual("false");
+
+                this.data.x = 5;
+                this.data.y = 5;
+
+                expect(template(this.data)).toEqual("true");
+            });
+
+            it("should determine x >= y", function(){
+                var template = Handlebars.compile(this.html);
+
+                this.data.operator = '>=';
+
+                this.data.x = 10;
+                this.data.y = -5;
+                expect(template(this.data)).toEqual("true");
+
+                this.data.x = -10;
+                this.data.y = 100;
+                expect(template(this.data)).toEqual("false");
+
+                this.data.x = 500.0;
+                this.data.y = 500;
+                expect(template(this.data)).toEqual("true");
+            });
+
+            it("should determine x != y", function(){
+                var template = Handlebars.compile(this.html);
+
+                this.data.operator = '!=';
+
+                this.data.x = 10;
+                this.data.y = 5;
+                expect(template(this.data)).toEqual("true");
+
+                this.data.x = 0;
+                this.data.y = 100;
+                expect(template(this.data)).toEqual("true");
+
+                this.data.x = -5;
+                this.data.y = -5;
+                expect(template(this.data)).toEqual("false");
+            });
+
+            it("should determine x == y", function(){
+                var template = Handlebars.compile(this.html);
+
+                this.data.operator = '==';
+
+                this.data.x = 100;
+                this.data.y = 55.5;
+                expect(template(this.data)).toEqual("false");
+
+                this.data.x = 0.0;
+                this.data.y = -100.0;
+                expect(template(this.data)).toEqual("false");
+
+                this.data.x = -5;
+                this.data.y = -5;
+                expect(template(this.data)).toEqual("true");
+
+                this.data.x = 45.0;
+                this.data.y = 45.0;
+                expect(template(this.data)).toEqual("true");
+            
+                this.data.x = "apples";
+                this.data.y = "apples";
+                expect(template(this.data)).toEqual("true");
+
+                this.data.x = "apples";
+                this.data.y = "oranges";
+                expect(template(this.data)).toEqual("false");
+            });
+
+            it("should determine x === y", function(){
+                var template = Handlebars.compile(this.html);
+
+                this.data.operator = '===';
+
+                this.data.x = 1000;
+                this.data.y = -88.5;
+                expect(template(this.data)).toEqual("false");
+
+                this.data.x = 0.0;
+                this.data.y = -170.0;
+                expect(template(this.data)).toEqual("false");
+
+                this.data.x = -5;
+                this.data.y = -5;
+                expect(template(this.data)).toEqual("true");
+
+                this.data.x = 45.0;
+                this.data.y = "45.0";
+                expect(template(this.data)).toEqual("false");
+            
+                this.data.x = "apples";
+                this.data.y = "apples";
+                expect(template(this.data)).toEqual("true");
+
+                this.data.x = "apples";
+                this.data.y = "Apples";
+                expect(template(this.data)).toEqual("false");
+
+
+                this.data.x = "apples";
+                this.data.y = "oranges";
+                expect(template(this.data)).toEqual("false");
+            });
+
 
         });
 

@@ -22,11 +22,31 @@ function(Handlebars){
                 '*': x * y,
                 '%': x % y
             }[operator];
+        },
+
+        compare: function(x, operator, y, options) {
+            var result = {
+                '<': x < y,
+                '>': x > y,
+                '<=': x <= y,
+                '>=': x >= y,
+                '!=': x != y,
+                '==': x == y,
+                '===': x === y
+            }[operator];
+
+            if (result) {
+                return options.fn(this);
+            }
+            else {
+                return options.inverse(this);
+            }
         }
     };
 
 
     Handlebars.registerHelper('calculate', MathHelpers.calculate);
+    Handlebars.registerHelper('compare', MathHelpers.compare);
 
     return MathHelpers;
 
