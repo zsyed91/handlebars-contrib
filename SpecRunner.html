@@ -8,37 +8,24 @@
   <link rel="stylesheet" href="lib/jasmine-2.3.2/jasmine.css">
 
   <script src="lib/requirejs/require.js"></script>
+  <script src="lib/main.js"></script>
 
   <script type="text/javascript">
-      require.config({
-        baseUrl: 'src',
+    var specs = [
+      "String",
+      "Math"
+    ];
 
-        paths: {
-          'jasmine': '../lib/jasmine-2.3.2/jasmine',
-          'jasmine-html': '../lib/jasmine-2.3.2/jasmine-html',
-          'jasmine-boot': '../lib/jasmine-2.3.2/boot',
-          'handlebars': '../lib/handlebars/handlebars-v3.0.3',
-          'string-spec': '../spec/StringSpec'
-
-        },
-
-        shim: {
-          'jasmine-html': {
-            deps: ['jasmine']
-          },
-          'jasmine-boot': {
-            deps: ['jasmine', 'jasmine-html']
-          }
-        }
-      });
-
-
+    for(var i=0; i<specs.length;i++) {
+      specs[i] = '../spec/' + specs[i] + 'Spec';
+    }
   </script>
 
-
   <script type="text/javascript">
+
+
     require(['jasmine-boot'], function(){
-      require(['string-spec'],
+      require(specs,
         function(){
             window.onload();
         });
