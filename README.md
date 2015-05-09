@@ -18,50 +18,50 @@ Underscore contrib style handlebars helper functions. Adds helper functions to y
 Capitalize the first character of the first word in the string.
 
 ```js
-    var strings = require("handlebars.strings");
+var strings = require("handlebars.strings");
 
-    strings.capitalize("this is a sentence.");
-    // This is a sentence.
+strings.capitalize("this is a sentence.");
+// This is a sentence.
 ```
 
 ```html
-    {{capitalize this.firstName}}
+{{capitalize this.firstName}}
 ```
 
 ### Capitalize All
 ```js
-    var strings = require("handlebars.strings");
+var strings = require("handlebars.strings");
 
-    strings.capitalize_all("john smith");
-    // John Smith
+strings.capitalize_all("john smith");
+// John Smith
 ```
 
 ```html
-    {{capitalize-all this.name}}
+{{capitalize-all this.name}}
 ```
 
 ### Normalize Spaces
 
 ```js
-    var strings = require("handlebars.strings");
+var strings = require("handlebars.strings");
 
-    strings.normalize_spaces("This   is a    sentence.");
-    // This is a sentence.
+strings.normalize_spaces("This   is a    sentence.");
+// This is a sentence.
 ```
 
 ```html
-    {{normalize-spaces this.summary}}
+{{normalize-spaces this.summary}}
 ```
 
 ### To URL Slug
 
 ```js
-    var strings = require("handlebars.strings");
+var strings = require("handlebars.strings");
 
-    strings.to_url_slug("Blog Post title!");
-    // blog-post-title
+strings.to_url_slug("Blog Post title!");
+// blog-post-title
 ```
 
 ```html
-    <a href="localhost/blog/{{to-url-slug this.postTitle}}">post</a>
+<a href="localhost/blog/{{to-url-slug this.postTitle}}">post</a>
 ```
