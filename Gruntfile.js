@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                 specs : 'spec/**/*.js',
                 template: require('grunt-template-jasmine-requirejs'),
                 templateOptions: {
-                    requireConfigFile: 'lib/main.js'
+                    requireConfigFile: 'lib/requirejs/main.js'
                 }
             }
         },
