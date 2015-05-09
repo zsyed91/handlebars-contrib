@@ -65,3 +65,33 @@ strings.to_url_slug("Blog Post title!");
 ```html
 <a href="localhost/blog/{{to-url-slug this.postTitle}}">post</a>
 ```
+
+
+
+## Math Helpers
+
+While you can use these in javascript, they are really designed for use within the templates. The calculate method in javascript would be easier to do it directly.
+
+### Calculate
+
+The supported operators are `[+, -, /, *, %]`
+
+```html
+{{calculate this.costOfCookies '+' this.costOfMilk}}
+```
+
+```html
+{{calculate this.totalPrice '*' this.taxRate}}
+```
+
+### Compare
+
+This helper is a conditional and fully supports the `else` clause. The supported operators are `[<, <=, >, >=, ==, !=, ===, !==]`.
+
+```html
+{{#compare this.price '<=' this.budget}}
+    <p>Affordable</p>
+{{else}}
+    <p>Too expensive :(</p>
+{{/compare}}
+```
