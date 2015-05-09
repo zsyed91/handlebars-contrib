@@ -190,6 +190,41 @@ function(Handlebars, MathHelpers){
                 expect(template(this.data)).toEqual("false");
             });
 
+            it("should determine x !== y", function(){
+                var template = Handlebars.compile(this.html);
+
+                this.data.operator = '!==';
+
+                this.data.x = 1000;
+                this.data.y = -88.5;
+                expect(template(this.data)).toEqual("true");
+
+                this.data.x = 0.0;
+                this.data.y = -170.0;
+                expect(template(this.data)).toEqual("true");
+
+                this.data.x = -5;
+                this.data.y = -5;
+                expect(template(this.data)).toEqual("false");
+
+                this.data.x = 45.0;
+                this.data.y = "45.0";
+                expect(template(this.data)).toEqual("true");
+            
+                this.data.x = "apples";
+                this.data.y = "apples";
+                expect(template(this.data)).toEqual("false");
+
+                this.data.x = "apples";
+                this.data.y = "Apples";
+                expect(template(this.data)).toEqual("true");
+
+
+                this.data.x = "apples";
+                this.data.y = "oranges";
+                expect(template(this.data)).toEqual("true");
+            });
+
             it("should determine x === y", function(){
                 var template = Handlebars.compile(this.html);
 
