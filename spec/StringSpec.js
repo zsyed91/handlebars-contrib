@@ -1,5 +1,5 @@
-define(["handlebars.strings"],
-function(Strings){
+define(["handlebars", "handlebars.strings"],
+function(Handlebars, Strings){
  
     describe("String helpers", function(){
 
@@ -58,6 +58,39 @@ function(Strings){
                 expect(Strings.to_url_slug("2015/05/08, test topic")).toEqual("2015-05-08-test-topic");
             });
 
+        });
+
+        describe("#match", function(){
+            var data, html;
+
+            beforeEach(function(){
+                this.data = {
+                    str: null,
+                    regex: null
+                };
+                this.html = "{{#match str regex}}true{{else}}false{{/match}}";
+            });
+
+            it("should match string to regex", function(){
+
+                var template = Handlebars.compile(this.html);
+
+                this.data.str = "Hello world";
+                this.data.regex = /^Hello world$/;
+                expect(template(this.data)).toEqual("true");
+
+                this.data.regex = /^does not exist$/;
+                expect(template(this.data)).toEqual("false");
+
+
+                this.data.str = "Lorem, ipsum - dolor 123!";
+                this.data.regex = /\d+/;
+                expect(template(this.data)).toEqual("true");
+
+                this.data.regex = /^\s\d+\s/;
+                expect(template(this.data)).toEqual("false");
+
+            });
         });
 
     });

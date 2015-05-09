@@ -66,6 +66,18 @@ strings.to_url_slug("Blog Post title!");
 <a href="localhost/blog/{{to-url-slug this.postTitle}}">post</a>
 ```
 
+### Match
+
+This helper is a conditional and fully supports the `else` clause.
+
+```html
+<!-- commonNameRegex = /^John/, for example -->
+{{#match this.name this.commonNameRegex}}
+    <p>What a common name!</p>
+{{else}}
+    <p>What a unique name!</p>
+{{/match}}
+```
 
 
 ## Math Helpers

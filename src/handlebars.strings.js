@@ -32,6 +32,17 @@ function(Handlebars){
             return url.replace(/[^a-zA-Z0-9 \/]+/g, '')
                      .replace(/[ \/]+/g, '-')
                      .toLowerCase();
+        },
+
+        match: function(string, regex, options) {
+
+            if(string.match(regex)){
+                return options.fn(this);
+            }
+            else {
+                return options.inverse();
+            }
+
         }
 
 
@@ -41,6 +52,7 @@ function(Handlebars){
     Handlebars.registerHelper('capitalize-all', strings.capitalize_all);
     Handlebars.registerHelper('normalize-spaces', strings.normalize_spaces);
     Handlebars.registerHelper('to-url-slug', strings.to_url_slug);
+    Handlebars.registerHelper('match', strings.match);
 
 
     return strings;
