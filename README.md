@@ -3,7 +3,7 @@
 
 ## Build Status
 
-[![Build Status](https://travis-ci.org/zsyed91/handlebars-contrib.svg)](https://travis-ci.org/zsyed91/handlebars-contrib)
+[![Build Status](https://travis-ci.org/zsyed91/handlebars-contrib.svg)](https://travis-ci.org/zsyed91/handlebars-contrib) [![Coverage Status](https://coveralls.io/repos/zsyed91/handlebars-contrib/badge.svg)](https://coveralls.io/r/zsyed91/handlebars-contrib)
 
 ## About
 
