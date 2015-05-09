@@ -58,7 +58,6 @@ function(Strings){
                 expect(Strings.to_url_slug("2015/05/08, test topic")).toEqual("2015-05-08-test-topic");
             });
 
-
         });
 
     });
